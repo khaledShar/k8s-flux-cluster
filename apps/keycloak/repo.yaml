@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: bitnami-oci
-  namespace: flux-system
+  namespace: keycloak
 spec:
   type: oci
   interval: 1h
