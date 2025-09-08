@@ -5,3 +5,4 @@ resources:
   - keycloak.yaml
   - grafana.yaml
   - external-secrets.yaml
+  - monitoring.yaml
