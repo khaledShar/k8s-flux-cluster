@@ -32,7 +32,9 @@ spec:
         name: Keycloak
         allow_sign_up: true
         scopes: openid email profile
+        # Localhost um sich zu authentifizieren
         auth_url: http://localhost:8080/realms/demo/protocol/openid-connect/auth
+        # SVC nutzen um DNS-Namen aufzulösen
         token_url: http://keycloak.keycloak.svc.cluster.local/realms/demo/protocol/openid-connect/token
         api_url: http://keycloak.keycloak.svc.cluster.local/realms/demo/protocol/openid-connect/userinfo
 
@@ -52,7 +54,7 @@ spec:
       enabled: true
       # kube-prometheus-stack legt Dashboards als ConfigMaps mit Label 'grafana_dashboard' ab
       label: grafana_dashboard
-      searchNamespace: ALL # damit auch aus 'monitoring' gelesen wird
+      searchNamespace: ALL # damit auch aus dem NS 'monitoring' gelesen wird
 
   datasources:
     datasources.yaml:
