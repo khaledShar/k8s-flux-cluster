@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: grafana-admin
+    namespace: grafana
+type: Opaque
+stringData:
+    admin-user: ENC[AES256_GCM,data:cVjw8Q8=,iv:gzbtfJwbRaq7JKu6xOG5eD/5JA+E+SQxyhvN+7uZycQ=,tag:aVPuT+cRPS37Hy8VdtMg3Q==,type:str]
+    admin-password: ENC[AES256_GCM,data:G8VjeynWdEztp4rl,iv:Uoi1U8YWBVCG/NFZR6a2dYJX54zbhAhrfPuojFlvVGw=,tag:TpBkEbxJhh8A5FGQ6JHUWA==,type:str]
+sops:
+    lastmodified: "2025-09-27T14:09:45Z"
+    mac: ENC[AES256_GCM,data:8MzrUO8bj4MJ85jqkdbli244xruN/7cT00NDs9oI/thyVoxnCu0DqbKM/6bAsacwQBVsYHj5OinNQ0V9l4LtEv8mLsL6KfjF4mfQDzUMRPPCYuQiPHu56DMhpltwZgR0BFGa9Oi6DMCLzXFmpk0+cMpXbR95plvpKNJbC8Wf8V4=,iv:UKH5O0f7Sk0dRmDtyN1o1LhfiKUCdKmzSfpHeYbO1fk=,tag:aeOs08FdGbKhcNxlG/IGEA==,type:str]
+    pgp:
+        - created_at: "2025-09-27T14:09:44Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA8aYCsTjITBUARAAouwHvU9YmqTGpVyxNUyApc0Jo/c/oSebUrpyyTqFATUO
+            3YIcEd+qUShV/J6XE5oXp7KQW7Ulfws3ajRn0T8b49HWmitBMVu5oUq138nEI3JS
+            CCNNgVcxlf+iG9d/AzUI3qwLnaor46qseEhNRrDJgfJMQhj8jloiADX82URiqHD2
+            nRH6TRDKDtWFQOtYM2kpKa1txDYQh+Ob5v4unRZpEZwG85tuhJbw6tyPxGR9X3s4
+            2pjI5Oa8Tkj218gvTEUvt/KPwxZiVFy07B4xRI5EOYyeI1GySpkkHyKGB9wTQf0N
+            /hm7aEnQANx+xVr41qZQONnjrCRiaDuvtJWiJs7jFNv3JXLNdUx5RIm2ur/MeQ6X
+            6+Z/pJR13uuUxv7Ztq8hhnRdztxnznzKtZBJrlGm0h5XcSEPTUjYKLCVg+KpGlbw
+            xu7gS9kQnTPGnNBGh0SRC5RAE5cZEqaeCaB6EfGvLWv6yNT2d9dwgPaT5eavUdRq
+            q0gUnl1bzfhKQzdnY0jNe9J3dBWjSAVaqDrlp9QMAiJ3VDkZXuQGJZuL/3d2aBtt
+            tYS0aosIUZjjZrh21v2XLU6s2D90CexbKvmtGXRk3u6WlwuoFYb3PEb9gzrDX4Zm
+            Opau9mWSF2gbMCer9Av5KfnBt+MQEaLWkwpufft6gusTR9XamP+D9fIlGL9d6vzS
+            XgGQ/kEv7OXlWu3mH2LUO5KkPieQ507tjYGdvmJJTrRL5z/OV2bfZe23/2eZrbJz
+            Xe5PodFSaTmR5Er2gwqCx+VPVcR+H/35ccLWfpuwqGhkFW/4Fkbs1HcUadLZCmY=
+            =Q3Nr
+            -----END PGP MESSAGE-----
+          fp: 9A03D5C8B86ECA018D05774B5D95531CE3632A7A
+    encrypted_regex: ^(data|stringData)$
+    version: 3.10.2

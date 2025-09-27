@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: keycloak-admin
+    namespace: keycloak
+type: Opaque
+stringData:
+    admin-password: ENC[AES256_GCM,data:XAWl6m/gHdimfg==,iv:OSnkcsVU06NY2IGscDGmrWUc+5z7+GvfgEwtWdCtK2w=,tag:d+dmcEl/IzhophLeqar9bg==,type:str]
+sops:
+    lastmodified: "2025-09-27T14:04:32Z"
+    mac: ENC[AES256_GCM,data:5CP7ekC9ycRjQ8t1xNwn+oYfednk5PDkUsRFkQT3PMZiHBclzkP4ebZZ2pkaPSnSHWmLKaIRdNNmHodN72joUd729+f0vYe9wf9EVdQiUxr/Q+FDutoYjmbx8OKRLYbDP/lpofpgSvbBt/A1QcsFP9uRBL7gJ/bgOsaXGWZazyA=,iv:NTQO+BAi50Z1bFNbCKCuPf2BRLqghwn1QoqGzrnasFI=,tag:qJUwlokzKzcrIY+I7daJLA==,type:str]
+    pgp:
+        - created_at: "2025-09-27T14:04:32Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA8aYCsTjITBUAQ/9FLQoVnorOGGXR46OC0qoi9r3DGAKTgShwTYg1p38HShm
+            dDiGkZUt0eBuBZF1NjWZhYHUbFEj4Z/xXKOHJXPCz1AKBXliyxFr9eDBnvAwlyts
+            Mhoilzaq13q+ouyroINElc97OdGNTYI2fT/q5Rp1l7f8119b0WVa3V5h3OWxGXr2
+            iihnPgqjRL/89/HX2lt8o5qJjMb+Hj16rCCTyrVLTm/8SnypJ/mlzFyac3jj8r98
+            vM/9nfJkavaNpWHH0VvNBXQNYGuuzb5xJAErPZ6az9NxbLbOKExsN4xZ/PRjyjHm
+            cd1zQHYHu18BBrrVGDXa2MtcU+iguslF8/oX/hHg7QhxDLjAqcksSHZW/fQL463i
+            eBLbwVJ6UEQ8BP7UH5/okdx8fGmclUqq0cLLMEgKdWTtRg9pumRNBePTOCe3k6Kt
+            fVPF3SvdPI1l9uZs9D1/+vcIKvbpM/WznnhliYeRV1+PmZeykhzFFmCmB3PUJmM/
+            YhpqzEA4vPzH4B6wWygRBWdEQnNulBJxblcnO4GlPzRMjlSYrdhw4WVzM3i5yflA
+            NNe4u/vSBYCdhdEQX70llY+zpTdUJm6j++U+LqHrPAy7yf3MFg/ip3N+u4bvWqFL
+            ym76mersRSYUgp8L+4qBL0a44IPLyrE6Bi7bEezX79QrqWdDPsJJqvMPMUmtMdXS
+            XgFXHB092ZLRI3iInmu9qEXIKPMo3r3a8EclKUZKUb9BXyEODXKblxOoDlc8kV+I
+            YVtbgf7HOfR/feX1/m+NX9LVqzzMT0/icu2FE7Gva0ovJetqnH+fBPCagO/lKiA=
+            =8pm3
+            -----END PGP MESSAGE-----
+          fp: 9A03D5C8B86ECA018D05774B5D95531CE3632A7A
+    encrypted_regex: ^(data|stringData)$
+    version: 3.10.2

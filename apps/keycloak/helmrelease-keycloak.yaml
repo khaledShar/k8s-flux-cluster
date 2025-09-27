@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: keycloak
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-oci
+        namespace: keycloak
+  install: { remediation: { retries: 3 } }
+  upgrade: { remediation: { retries: 3 } }
+  values:
+    postgresql:
+      enabled: true
+      auth:
+        username: bn_keycloak
+        database: bitnami_keycloak
+        password: "changeme-please"
+    auth:
+      adminUser: admin
+      existingSecret: keycloak-admin
+      passwordSecretKey: admin-password
+    service:
+      type: ClusterIP
+    extraEnvVars:
+      - { name: KC_PROXY, value: "edge" }
+      - { name: KC_HTTP_ENABLED, value: "true" }
