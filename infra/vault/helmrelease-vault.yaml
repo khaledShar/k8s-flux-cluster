@@ -16,6 +16,13 @@ spec:
     ui:
       enabled: true
     server:
+      extraConfig: |
+        telemetry {
+          prometheus_retention_time = "24h"
+          disable_hostname = true
+        }
+      serviceMonitor:
+      enabled: true
       dev:
         enabled: true
         devRootToken: "root"

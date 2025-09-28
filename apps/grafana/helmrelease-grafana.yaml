@@ -13,6 +13,24 @@ spec:
         name: grafana
         namespace: grafana
   values:
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+          - name: Prometheus
+            type: prometheus
+            access: proxy
+            url: http://kube-prometheus-stack-prometheus.monitoring.svc:9090
+            isDefault: true
+    sidecar:
+      datasources:
+        enabled: true
+      dashboards:
+        enabled: true
+        label: grafana_dashboard
+        searchNamespace: ALL
+    serviceMonitor:
+      enabled: true
     service:
       type: ClusterIP
     persistence:
