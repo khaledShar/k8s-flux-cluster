@@ -31,6 +31,8 @@ spec:
         searchNamespace: ALL
     serviceMonitor:
       enabled: true
+    metrics:
+      enabled: true
     service:
       type: ClusterIP
     persistence:
