@@ -4,3 +4,6 @@ resources:
   - repo.yaml
   - externalsecret-grafana.yaml
   - helmrelease-grafana.yaml
+  - dashboards/keycloak-dashboard.yaml
+  - dashboards/grafana-self-dashboard.yaml
+  - dashboards/vault-dashboard.yaml
