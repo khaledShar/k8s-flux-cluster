@@ -24,3 +24,16 @@ spec:
     grafana.ini:
       server:
         root_url: http://localhost:3000
+      auth.generic_oauth:
+        enabled: true
+        name: Keycloak
+        allow_sign_up: true
+        scopes: openid email profile
+        auth_url: http://localhost:8080/realms/demo/protocol/openid-connect/auth
+        token_url: http://keycloak.keycloak.svc.cluster.local/realms/demo/protocol/openid-connect/token
+        api_url: http://keycloak.keycloak.svc.cluster.local/realms/demo/protocol/openid-connect/userinfo
+    envValueFrom:
+      GF_AUTH_GENERIC_OAUTH_CLIENT_ID:
+        secretKeyRef: { name: grafana-oauth, key: client-id }
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
+        secretKeyRef: { name: grafana-oauth, key: client-secret }
