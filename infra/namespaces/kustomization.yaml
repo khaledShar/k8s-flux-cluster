@@ -4,3 +4,4 @@ resources:
   - keycloak.yaml
   - grafana.yaml
   - vault.yaml
+  - external-secrets.yaml
