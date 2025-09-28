@@ -12,13 +12,21 @@ spec:
         kind: HelmRepository
         name: hashicorp
         namespace: vault
-  install: { remediation: { retries: 3 } }
-  upgrade: { remediation: { retries: 3 } }
   values:
-    server:
-      dev:
-        enabled: true
     ui:
       enabled: true
-    service:
-      type: ClusterIP
+    server:
+      extraConfig: |
+        telemetry {
+          prometheus_retention_time = "24h"
+          disable_hostname = true
+        }
+      serviceMonitor:
+      enabled: true
+      dev:
+        enabled: true
+        devRootToken: "root"
+    injector:
+      enabled: false
+    csi:
+      enabled: false

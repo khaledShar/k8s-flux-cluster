@@ -18,6 +18,16 @@ spec:
     prometheus:
       service:
         type: ClusterIP
+      prometheusSpec:
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        serviceMonitorSelector: {} # alle Labels akzeptieren
+        podMonitorSelector: {}
+        probeSelector: {}
+        serviceMonitorNamespaceSelector: {} # alle Namespaces
+        podMonitorNamespaceSelector: {}
+        ruleNamespaceSelector: {}
     alertmanager:
       service:
         type: ClusterIP
