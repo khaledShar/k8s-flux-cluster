@@ -1,0 +1,4 @@
+creation_rules:
+  - pgp: 9A03D5C8B86ECA018D05774B5D95531CE3632A7A
+    encrypted_regex: "^(data|stringData)$"
+    path_regex: '(^|/)(vault-token|keycloak-admin|grafana-admin)\.sops\.yaml$'

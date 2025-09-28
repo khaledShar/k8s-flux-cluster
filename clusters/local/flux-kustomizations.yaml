@@ -1,0 +1,109 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infra-namespaces
+  namespace: flux-system
+spec:
+  interval: 10m
+  sourceRef: { kind: GitRepository, name: flux-system }
+  path: ./infra/namespaces
+  prune: true
+  wait: true
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infra-vault
+  namespace: flux-system
+spec:
+  interval: 10m
+  sourceRef: { kind: GitRepository, name: flux-system }
+  path: ./infra/vault
+  prune: true
+  wait: true
+  dependsOn:
+    - name: infra-namespaces
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps-keycloak
+  namespace: flux-system
+spec:
+  interval: 10m
+  sourceRef: { kind: GitRepository, name: flux-system }
+  path: ./apps/keycloak
+  prune: true
+  wait: true
+  dependsOn:
+    - name: infra-namespaces
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps-grafana
+  namespace: flux-system
+spec:
+  interval: 10m
+  sourceRef: { kind: GitRepository, name: flux-system }
+  path: ./apps/grafana
+  prune: true
+  wait: true
+  dependsOn:
+    - name: infra-namespaces
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infra-external-secrets-chart
+  namespace: flux-system
+spec:
+  interval: 10m
+  sourceRef: { kind: GitRepository, name: flux-system }
+  path: ./infra/external-secrets/chart
+  prune: true
+  wait: true
+  dependsOn:
+    - name: infra-namespaces
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infra-external-secrets-config
+  namespace: flux-system
+spec:
+  interval: 10m
+  sourceRef: { kind: GitRepository, name: flux-system }
+  path: ./infra/external-secrets/config
+  prune: true
+  wait: true
+  dependsOn:
+    - name: infra-external-secrets-chart
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata: { name: infra-monitoring, namespace: flux-system }
+spec:
+  interval: 10m
+  sourceRef: { kind: GitRepository, name: flux-system }
+  path: ./infra/monitoring
+  prune: true
+  wait: true
+  dependsOn:
+    - name: infra-namespaces

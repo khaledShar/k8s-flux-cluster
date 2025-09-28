@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard-vault
+  namespace: grafana
+  labels:
+    grafana_dashboard: "1"
+data:
+  vault.json: |
+    {
+      "title": "Vault",
+      "refresh": "10s",
+      "schemaVersion": 38,
+      "panels": [
+        { "type":"stat", "title":"Vault Up",
+          "gridPos":{"x":0,"y":0,"w":6,"h":4},
+          "targets":[{ "expr":"max(up{job=~\".*vault.*\"})" }]
+        },
+        { "type":"stat", "title":"Sealed",
+          "gridPos":{"x":6,"y":0,"w":6,"h":4},
+          "targets":[{ "expr":"max(vault_core_sealed{job=~\".*vault.*\"})" }],
+          "options":{"reduceOptions":{"calcs":["lastNotNull"]}}
+        },
+        { "type":"timeseries", "title":"Requests/s",
+          "gridPos":{"x":0,"y":4,"w":12,"h":8},
+          "targets":[{ "expr":"sum(rate(vault_core_handle_request[5m])) by (operation)" }]
+        },
+        { "type":"timeseries", "title":"Leases",
+          "gridPos":{"x":0,"y":12,"w":12,"h":8},
+          "targets":[{ "expr":"sum(vault_expire_num_leases)" }]
+        },
+        { "type":"timeseries", "title":"CPU (process)",
+          "gridPos":{"x":0,"y":20,"w":12,"h":8},
+          "targets":[{ "expr":"rate(process_cpu_seconds_total{job=~\".*vault.*\"}[5m])" }]
+        },
+        { "type":"timeseries", "title":"RSS Memory",
+          "gridPos":{"x":0,"y":28,"w":12,"h":8},
+          "targets":[{ "expr":"process_resident_memory_bytes{job=~\".*vault.*\"}" }]
+        }
+      ]
+    }

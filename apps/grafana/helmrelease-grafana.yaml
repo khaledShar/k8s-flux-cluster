@@ -1,0 +1,59 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: grafana
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: grafana
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: grafana
+  values:
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+          - name: Prometheus
+            type: prometheus
+            access: proxy
+            url: http://kube-prometheus-stack-prometheus.monitoring.svc:9090
+            isDefault: true
+    sidecar:
+      datasources:
+        enabled: true
+      dashboards:
+        enabled: true
+        label: grafana_dashboard
+        searchNamespace: ALL
+    serviceMonitor:
+      enabled: true
+    metrics:
+      enabled: true
+    service:
+      type: ClusterIP
+    persistence:
+      enabled: false
+    admin:
+      existingSecret: grafana-admin
+      userKey: admin-user
+      passwordKey: admin-password
+    grafana.ini:
+      server:
+        root_url: http://localhost:3000
+      auth.generic_oauth:
+        enabled: true
+        name: Keycloak
+        allow_sign_up: true
+        scopes: openid email profile
+        auth_url: http://localhost:8080/realms/demo/protocol/openid-connect/auth
+        token_url: http://keycloak.keycloak.svc.cluster.local/realms/demo/protocol/openid-connect/token
+        api_url: http://keycloak.keycloak.svc.cluster.local/realms/demo/protocol/openid-connect/userinfo
+    envValueFrom:
+      GF_AUTH_GENERIC_OAUTH_CLIENT_ID:
+        secretKeyRef: { name: grafana-oauth, key: client-id }
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
+        secretKeyRef: { name: grafana-oauth, key: client-secret }
