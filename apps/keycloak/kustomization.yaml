@@ -4,4 +4,3 @@ resources:
   - repo.yaml
   - externalsecret-keycloak.yaml
   - helmrelease-keycloak.yaml
-  - dashboards/keycloak-dashboard.yaml
