@@ -21,11 +21,11 @@ spec:
         enabled: true
       prometheusRule:
         enabled: true
-    postgresql:
+    postgres:
       enabled: true
       auth:
+        database: keycloak
         username: bn_keycloak
-        database: bitnami_keycloak
         password: "changeme-please"
     auth:
       adminUser: admin
