@@ -10,7 +10,7 @@ spec:
       chart: keycloak
       sourceRef:
         kind: HelmRepository
-        name: bitnami-oci
+        name: cloudpirates-oci
         namespace: keycloak
   install: { remediation: { retries: 3 } }
   upgrade: { remediation: { retries: 3 } }
