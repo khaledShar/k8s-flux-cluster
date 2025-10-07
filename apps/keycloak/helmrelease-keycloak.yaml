@@ -30,7 +30,8 @@ spec:
     auth:
       adminUser: admin
       existingSecret: keycloak-admin
-      passwordSecretKey: admin-password
+      secretKeys:
+        adminPasswordKey: admin-password
     service:
       type: ClusterIP
     extraEnvVars:
