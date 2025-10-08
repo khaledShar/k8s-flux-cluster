@@ -10,23 +10,17 @@ spec:
       chart: keycloak
       sourceRef:
         kind: HelmRepository
-        name: cloudpirates-oci
+        name: codecentric-oci
         namespace: keycloak
   install: { remediation: { retries: 3 } }
   upgrade: { remediation: { retries: 3 } }
   values:
     metrics:
       enabled: true
-      serviceMonitor:
-        enabled: true
-      prometheusRule:
-        enabled: true
-    postgres:
+    serviceMonitor:
       enabled: true
-      auth:
-        database: keycloak
-        username: bn_keycloak
-        password: "changeme-please"
+    prometheusRule:
+      enabled: true
     auth:
       adminUser: admin
       existingSecret: keycloak-admin
