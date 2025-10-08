@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: codecentric-oci
-        namespace: keycloak
+        namespace: keycloakx
   install: { remediation: { retries: 3 } }
   upgrade: { remediation: { retries: 3 } }
   values:
